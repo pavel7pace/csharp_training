@@ -13,14 +13,26 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Navigator.GoToGroupsPage();
-            app.GroupHelper.InitGroupCreation();
-            app.GroupHelper.FillGroupForm(new GroupData("New test Group777", "Dummy group header", "Dummy group footer"));
-            app.GroupHelper.SubmitGroupCreation();
-            app.GroupHelper.ReturnToGroupsPage();
+            //GroupData group = new GroupData("New test Group", "New Header", "New Footer");
+            GroupData group = new GroupData("New test Group");
+            group.Header = "New Header";
+            group.Footer = "New Footer";
+
+            app.Groups.Create(group);
             app.Auth.Logout();
-        }          
+        }
+
+        [Test]
+        public void EmptyGroupCreationTest()
+        {
+            //GroupData group = new GroupData("", "", "");
+
+            GroupData group = new GroupData("");
+            group.Header = "";
+            group.Footer = "";
+
+            app.Groups.Create(group);
+            app.Auth.Logout();
+        }
     }
 }
