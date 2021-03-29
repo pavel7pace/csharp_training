@@ -9,12 +9,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-     public class NavigationHelper : HelperBase
+    public class NavigationHelper : HelperBase
     {
         public string baseURL;
 
         public NavigationHelper(ApplicationManager manager, string baseURL)
-            :base(manager)
+            : base(manager)
         {
             this.baseURL = baseURL;
         }

@@ -47,16 +47,19 @@ namespace WebAddressbookTests
 
         public static ApplicationManager GetInstance()
         {
-            if (! app.IsValueCreated)
+            if (!app.IsValueCreated)
             {
-                app.Value = new ApplicationManager();
+                ApplicationManager newInstance = new ApplicationManager();
+                app.Value = newInstance;
+                newInstance.Navigator.GoToHomePage();
+                
             }
 
             return app.Value;
         }
 
         public IWebDriver Driver
-        { 
+        {
             get
             {
                 return driver;
@@ -64,7 +67,7 @@ namespace WebAddressbookTests
         }
 
 
-            public LoginHelper Auth
+        public LoginHelper Auth
         {
             get
             {

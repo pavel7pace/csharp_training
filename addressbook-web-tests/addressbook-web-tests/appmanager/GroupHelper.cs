@@ -37,13 +37,13 @@ namespace WebAddressbookTests
             ReturnToGroupsPage();
             return this;
         }
-                
+
         public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             DeleteGroup();
-            ReturnToGroupsPage(); 
+            ReturnToGroupsPage();
             return this;
         }
 
@@ -56,7 +56,7 @@ namespace WebAddressbookTests
         public GroupHelper FillGroupForm(GroupData group)
         {
             driver.FindElement(By.Name("group_name")).Click();
-            Type(By.Name("group_name"),group.Name);
+            Type(By.Name("group_name"), group.Name);
             Type(By.Name("group_header"), group.Header);
             Type(By.Name("group_footer"), group.Footer);
             return this;

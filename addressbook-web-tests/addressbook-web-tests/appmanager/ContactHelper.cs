@@ -19,20 +19,20 @@ namespace WebAddressbookTests
 
         public ContactHelper Create(ContactData contact)
         {
-         InitContactCreation();
-         FillContactInfo(contact);
-         SubmitContactCreation();
-         ReturnToContactsPage();
-         return this;
+            InitContactCreation();
+            FillContactInfo(contact);
+            SubmitContactCreation();
+            ReturnToContactsPage();
+            return this;
         }
 
         public ContactHelper Modify(ContactData newData)
         {
-                InitContactModification();
-                FillContactInfo(newData);
-                SubmitContactModification();
-                ReturnToContactsPage();
-                return this;
+            InitContactModification();
+            FillContactInfo(newData);
+            SubmitContactModification();
+            ReturnToContactsPage();
+            return this;
         }
 
         public ContactHelper Remove()
