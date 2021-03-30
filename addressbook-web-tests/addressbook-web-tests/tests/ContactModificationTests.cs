@@ -10,14 +10,26 @@ namespace WebAddressbookTests
     class ContactModificationTests : AuthTestBase
     {
         [Test]
-        public void GroupModificationTest()
+        public void ContactModificationTest()
         {
+            ContactData contact = new ContactData("Ivan");
+            contact.MiddleName = "Petrovich";
+            contact.LastName = "Vetrov";
 
             ContactData newData = new ContactData("Pavel");
             newData.MiddleName = "Nikolaevich";
             newData.LastName = null;
 
-            app.Contacts.Modify(newData);
+
+            if (app.Contacts.IsContactPresent())
+            {
+                app.Contacts.Modify(newData);
+            }
+            else
+            {
+                app.Contacts.Create(contact);
+                app.Contacts.Modify(newData);
+            }
         }
     }
 }

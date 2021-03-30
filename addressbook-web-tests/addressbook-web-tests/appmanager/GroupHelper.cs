@@ -97,5 +97,11 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
+
+        public bool IsGroupPresent()
+        {
+            manager.Navigator.GoToGroupsPage();
+            return IsElementPresent(By.ClassName("group"));
+        }
     }
 }

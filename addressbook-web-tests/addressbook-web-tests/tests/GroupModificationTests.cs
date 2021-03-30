@@ -12,12 +12,25 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+            GroupData group = new GroupData("New test Group");
+            group.Header = "New Header";
+            group.Footer = "New Footer";
+
             GroupData newData = new GroupData("Modified test Group");
             newData.Header = "Modified Header";
             newData.Footer = "Modified Footer";
 
-            app.Groups.Modify(1, newData);
-        }
 
+            if (app.Groups.IsGroupPresent())
+            {
+                app.Groups.Modify(1, newData);
+            }
+            else
+            {
+                app.Groups.Create(group);
+                app.Groups.Modify(1, newData);
+            }
+
+        }
     }
 }
