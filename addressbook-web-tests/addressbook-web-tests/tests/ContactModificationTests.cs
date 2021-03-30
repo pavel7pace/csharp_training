@@ -12,6 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+
             ContactData newData = new ContactData("Pavel");
             newData.MiddleName = "Nikolaevich";
             newData.LastName = null;
