@@ -16,15 +16,11 @@ namespace WebAddressbookTests
             contact.MiddleName = "Petrovich";
             contact.LastName = "Vetrov";
 
-            if (app.Contacts.IsContactPresent())
-            {
-                app.Contacts.Remove();
-            }
-            else
+            if (!app.Contacts.IsContactPresent())
             {
                 app.Contacts.Create(contact);
-                app.Contacts.Remove();
-            }            
+            }
+            app.Contacts.Remove();                      
         }
     }
 }

@@ -21,16 +21,11 @@ namespace WebAddressbookTests
             newData.Footer = "Modified Footer";
 
 
-            if (app.Groups.IsGroupPresent())
-            {
-                app.Groups.Modify(1, newData);
-            }
-            else
+            if (!app.Groups.IsGroupPresent())
             {
                 app.Groups.Create(group);
-                app.Groups.Modify(1, newData);
             }
-
+            app.Groups.Modify(1, newData);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace WebAddressbookTests
     [TestFixture]
     public class GroupRemovalTests : AuthTestBase
     {
-        
+
         [Test]
         public void GroupRemovalTest()
         {
@@ -17,15 +17,11 @@ namespace WebAddressbookTests
             group.Header = "New Header";
             group.Footer = "New Footer";
 
-            if (app.Groups.IsGroupPresent())
-            {
-                app.Groups.Remove(1);
-            }
-            else
+            if (!app.Groups.IsGroupPresent())
             {
                 app.Groups.Create(group);
-                app.Groups.Remove(1);
-            }
-        }    
+            }                
+            app.Groups.Remove(1);
+        }
     }
 }

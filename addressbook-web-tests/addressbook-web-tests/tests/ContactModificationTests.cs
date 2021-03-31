@@ -21,15 +21,11 @@ namespace WebAddressbookTests
             newData.LastName = null;
 
 
-            if (app.Contacts.IsContactPresent())
-            {
-                app.Contacts.Modify(newData);
-            }
-            else
+            if (!app.Contacts.IsContactPresent())
             {
                 app.Contacts.Create(contact);
-                app.Contacts.Modify(newData);
             }
+            app.Contacts.Modify(newData);
         }
     }
 }
