@@ -44,6 +44,11 @@ namespace WebAddressbookTests
             return FirstName == other.FirstName && LastName == other.LastName;
         }
 
+        public override int GetHashCode()
+        {
+            return FirstName.GetHashCode() + LastName.GetHashCode();
+        }
+
         public override string ToString()
         {
             return ("firstname=" + FirstName) + ("lastname=" + LastName);
@@ -98,7 +103,6 @@ namespace WebAddressbookTests
             {
                 lastName = value;
             }
-
         }
     }
 }
