@@ -18,14 +18,23 @@ namespace WebAddressbookTests
 
             ContactData newData = new ContactData("Pavel");
             newData.MiddleName = "Nikolaevich";
-            newData.LastName = null;
+            newData.LastName = "Boiko";
 
 
             if (!app.Contacts.IsContactPresent())
             {
                 app.Contacts.Create(contact);
             }
-            app.Contacts.Modify(newData);
+
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
+            app.Contacts.Modify(newData, 0);
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
+
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[0].LastName = newData.LastName;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
