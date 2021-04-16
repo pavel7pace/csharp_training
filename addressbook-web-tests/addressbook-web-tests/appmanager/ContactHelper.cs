@@ -166,28 +166,54 @@ namespace WebAddressbookTests
             InitContactModification(index);
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            string middleName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+            string nickname = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            string company = driver.FindElement(By.Name("company")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).Text;
+            string title = driver.FindElement(By.Name("title")).GetAttribute("value");
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            string emailAdress = driver.FindElement(By.Name("email")).GetAttribute("value");
-            string emailAdress2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
-            string emailAdress3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
+            string emailAddress = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string emailAddress2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string emailAddress3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+            string homepage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
+
 
             return new ContactData(firstName, lastName)
             {
                 MiddleName = middleName,
+                Nickname = nickname,
+                Company = company,
                 Address = address,
+                Title = title,                
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone,
-                EmailAddress = emailAdress,
-                EmailAddress2 = emailAdress2,
-                EmailAddress3 = emailAdress3
+                Fax = fax,
+                EmailAddress = emailAddress,
+                EmailAddress2 = emailAddress2,
+                EmailAddress3 = emailAddress3,
+                Homepage = homepage
 
             };
+        }       
+
+        public string GetContactInformationFromInfo(int infoIndex)
+        {
+            manager.Navigator.GoToHomePage();
+            GoToInfo(infoIndex);
+            string allUserProfileData = driver.FindElement(By.Id("content")).Text;
+            return allUserProfileData.Replace(" ", "").Replace("H:", "").Replace("M:", "").Replace("W:", "")
+                                     .Replace("F:", "").Replace("Homepage:", "").Replace("\r\n", "");
+        }
+
+        public ContactHelper GoToInfo(int infoIndex)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Details'])[" + (infoIndex + 1) + "]")).Click();
+            return this;
         }
     }
 }

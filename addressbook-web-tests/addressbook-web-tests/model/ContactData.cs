@@ -15,17 +15,23 @@ namespace WebAddressbookTests
 
         private string allEmails;
 
+        private string allInfoFromEditForm;
+
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Home { get; set; }
+        public string Nickname { get; set; }
+        public string Company { get; set; }
         public string Address { get; set; }
+        public string Title { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
+        public string Fax { get; set; }
         public string EmailAddress { get; set; }
         public string EmailAddress2 { get; set; }
         public string EmailAddress3 { get; set; }
+        public string Homepage { get; set; }
 
 
         public ContactData(string firstName)
@@ -120,14 +126,48 @@ namespace WebAddressbookTests
             }
         }
 
-        private string CleanUp(string contactData)
+        
+        public string AllInfoFromEditForm
+        {
+            get
+            {
+                if (allInfoFromEditForm != null)
+                {
+                    return allInfoFromEditForm;
+                }
+                else
+                {
+                    return CleanUpAllInfo(FirstName) + CleanUpAllInfo(MiddleName) + CleanUpAllInfo(LastName) + CleanUpAllInfo(Nickname) + CleanUpAllInfo(Title) + CleanUpAllInfo(Company)
+                        + CleanUpAllInfo(Address) + CleanUpAllInfo(HomePhone) + CleanUpAllInfo(MobilePhone)
+                        + CleanUpAllInfo(WorkPhone) + CleanUpAllInfo(Fax) + CleanUpAllInfo(EmailAddress) + CleanUpAllInfo(EmailAddress2) + CleanUpAllInfo(EmailAddress3) + CleanUpAllInfo(Homepage);
+                }
+            }
+            set
+            {
+                allInfoFromEditForm = value;
+            }
+        }
+
+        public string CleanUp(string contactData)
         {
                 if (contactData == null || contactData == "")
                 {
                     return "";
                 }
-                //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
-                return Regex.Replace(contactData, "[ -()]", "") + "\r\n";
+            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(contactData, "[ -()]", "") + "\r\n";
+
+        }
+
+        public string CleanUpAllInfo(string AllContactData)
+        {
+            if (AllContactData == null || AllContactData == "")
+            {
+                return "";
+            }
+            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return AllContactData.Replace(" ", "").Replace("H: ", "").Replace("M: ", "").Replace("W: ", "").Replace("F: ", "").Replace("Homepage: ", "").Replace("\r\n", "");
+
         }
 
     }
